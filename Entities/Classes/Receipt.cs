@@ -2,6 +2,7 @@
 {
     public class Receipt : Bill
     {
+        Receipt() { }
         public Receipt(int id, DateTime creationDateTime) : base(id, creationDateTime)
         {
         }

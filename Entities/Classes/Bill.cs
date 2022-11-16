@@ -3,9 +3,9 @@
     public abstract class Bill : IContainsID
     {
         public int ID { get; set; }
-        protected DateTime CreationDateTime { get; set; }
-        protected List<BillRecord> BillRecords { get; set; }
-
+        public DateTime CreationDateTime { get; set; }
+        public List<BillRecord> BillRecords { get; set; }
+        protected Bill() { }
         protected Bill(int id, DateTime creationDateTime)
         {
             ID = id;
@@ -20,7 +20,7 @@
             BillRecords = billRecords;
         }
 
-        protected void AddBillRecord(BillRecord billRecord)
+        public void AddBillRecord(BillRecord billRecord)
         {
             BillRecords.Add(billRecord);
         }

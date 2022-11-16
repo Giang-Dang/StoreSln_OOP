@@ -1,6 +1,6 @@
 ﻿namespace StoreSln_OOP.Entities
 {
-    public abstract class BillRecord : IContainsID
+    public class BillRecord : IContainsID
     {
         public int ID { get; set; }
         public int ProductID { get; set; }

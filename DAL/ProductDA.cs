@@ -2,18 +2,15 @@
 
 namespace StoreSln_OOP.DAL
 {
-    public class ProductDA : DALBase, IDALBase
+    public class ProductDA
     {
-        private static ProductDA? _productDA;
+        private static DALBase<Product>? _productDA;
         private static readonly object lockObject = new object();
 
-        private ProductDA()
-        {
-            dataFilePath = dataFilePath = $@"{Global.DATA_DIR}/Products.json";
-        }
+        private ProductDA() { }
 
         //create unique instance
-        public static ProductDA GetDALFunction()
+        public static DALBase<Product> GetDALFunction()
         {
             //thread safe
             if (_productDA == null)
@@ -22,41 +19,11 @@ namespace StoreSln_OOP.DAL
                 {
                     if (_productDA == null)
                     {
-                        _productDA = new ProductDA();
+                        _productDA = new DALBase<Product>("Products.json");
                     }
                 }
             }
             return _productDA;
-        }
-
-        IDALBase IDALBase.GetDALFunction()
-        {
-            return CategoryDA.GetDALFunction();
-        }
-
-        public bool ReadData(out List<IContainsID> resInstances)
-        {
-            return ReadData(ProductDA.GetDALFunction().dataFilePath, out resInstances);
-        }
-
-        public bool SaveData(List<IContainsID> saveInstances)
-        {
-            return SaveData(ProductDA.GetDALFunction().dataFilePath, saveInstances);
-        }
-
-        public bool Add(IContainsID addInstance)
-        {
-            return Add(ProductDA.GetDALFunction().dataFilePath, addInstance);
-        }
-
-        public bool Update(IContainsID updateInstance)
-        {
-            return Update(ProductDA.GetDALFunction().dataFilePath, updateInstance);
-        }
-
-        public bool DeleteAtID(int id)
-        {
-            return DeleteAtID(ProductDA.GetDALFunction().dataFilePath, id);
         }
     }
 }

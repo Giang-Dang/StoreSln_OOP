@@ -2,18 +2,15 @@
 
 namespace StoreSln_OOP.DAL
 {
-    public class InvoiceDA : DALBase, IDALBase
+    public class InvoiceDA
     {
-        private static InvoiceDA? _invoiceDA;
+        private static DALBase<Invoice>? _invoiceDA;
         private static readonly object lockObject = new object();
 
-        private InvoiceDA()
-        {
-            dataFilePath = dataFilePath = $@"{Global.DATA_DIR}/Invoices.json";
-        }
+        private InvoiceDA() { }
 
         //create unique instance
-        public static InvoiceDA GetDALFunction()
+        public static DALBase<Invoice> GetDALFunction()
         {
             //thread safe
             if (_invoiceDA == null)
@@ -22,40 +19,11 @@ namespace StoreSln_OOP.DAL
                 {
                     if (_invoiceDA == null)
                     {
-                        _invoiceDA = new InvoiceDA();
+                        _invoiceDA = new DALBase<Invoice>("Invoices.json");
                     }
                 }
             }
             return _invoiceDA;
-        }
-        IDALBase IDALBase.GetDALFunction()
-        {
-            return CategoryDA.GetDALFunction();
-        }
-
-        public bool ReadData(out List<IContainsID> resInstances)
-        {
-            return ReadData(InvoiceDA.GetDALFunction().dataFilePath, out resInstances);
-        }
-
-        public bool SaveData(List<IContainsID> saveInstances)
-        {
-            return SaveData(InvoiceDA.GetDALFunction().dataFilePath, saveInstances);
-        }
-
-        public bool Add(IContainsID addInstance)
-        {
-            return Add(InvoiceDA.GetDALFunction().dataFilePath, addInstance);
-        }
-
-        public bool Update(IContainsID updateInstance)
-        {
-            return Update(InvoiceDA.GetDALFunction().dataFilePath, updateInstance);
-        }
-
-        public bool DeleteAtID(int id)
-        {
-            return DeleteAtID(InvoiceDA.GetDALFunction().dataFilePath, id);
         }
     }
 }

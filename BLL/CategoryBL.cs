@@ -1,5 +1,6 @@
 ﻿using StoreSln_OOP.DAL;
 using StoreSln_OOP.Entities;
+using System.Xml.Linq;
 
 namespace StoreSln_OOP.BLL
 {
@@ -7,47 +8,73 @@ namespace StoreSln_OOP.BLL
     {
         public static bool ReadData(out List<Category> categories)
         {
-            IDALBase dalInstance = CategoryDA.GetDALFunction();
-
-            return dalInstance.GetDALFunction().ReadData(out categories);
+            return CategoryDA.GetDALFunction().ReadData(out categories);
         }
 
         public static bool Add(Category category)
         {
-            IDALBase dalInstance = CategoryDA.GetDALFunction();
-
-            return dalInstance.GetDALFunction().Add(category);
+            return CategoryDA.GetDALFunction().Add(category);
         }
 
         public static bool Update(Category category)
         {
-            IDALBase dalInstance = CategoryDA.GetDALFunction();
-
-            return dalInstance.GetDALFunction().Update(category);
+            return CategoryDA.GetDALFunction().Update(category);
         }
 
-        public static bool DeleteAtID(int id)
+        public static bool RemoveAtID(int id)
         {
-            IDALBase dalInstance = CategoryDA.GetDALFunction();
-
-            return dalInstance.GetDALFunction().DeleteAtID(id);
+            return CategoryDA.GetDALFunction().RemoveAtID(id);
         }
 
-        public static Category FindByID(int id)
+        public static Category? FindByID(int id)
         {
-            IContainsID categories;
+            List<Category> categories;
             if(ReadData(out categories))
-            return categories.First(c => c.ID == id);
+            {
+                return categories.First(c => c.ID == id);
+            }
+            return default;
         }
-        public static Category FindByName(string name)
+        public static Category? FindByName(string name)
         {
-            var categories = ReadData();
-            return categories.First(c => c.Name == name);
+            List<Category> categories;
+            if (ReadData(out categories))
+            {
+                return categories.First(c => c.Name == name);
+            }
+            return default;
         }
         public static List<Category> FindByStringInName(string sname)
         {
-            var categories = ReadData();
-            return categories.Where(c => c.Name.Contains(sname ?? "")).ToList();
+            List<Category> categories;
+            if (ReadData(out categories))
+            {
+                return categories.Where(c => c.Name.Contains(sname ?? "")).ToList();
+            }
+            return new List<Category>();
+        }
+
+        public static bool IsInputValidAndReturnNoti(string name, out string[] notifications)
+        {
+            var res = true;
+            notifications = new string[2];
+
+            List<Category> categories;
+            CategoryDA.GetDALFunction().ReadData(out categories);
+
+            if (name == null)
+            {
+                notifications[0] = "Tên loại hàng không được để trống.";
+                res = false;
+            }
+
+            if (categories.Any(c => c.Name == name))
+            {
+                notifications[1] = "Tên loại hàng đã được dùng. Xin vui lòng nhập tên khác.";
+                res = false;
+            }
+
+            return res;
         }
     }
 }

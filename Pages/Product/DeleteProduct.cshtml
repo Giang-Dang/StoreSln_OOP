@@ -1,0 +1,54 @@
+﻿@page
+@model StoreSln_OOP.Pages.Product.DeleteProductModel
+<form method="post">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary pl-3">Xóa mặt hàng</h2>
+            <hr />
+        </div>
+        @if (Model.IsNotiActive)
+        {
+            <div class="mb-3 border">
+                <ul>
+                    @foreach (var noti in Model.Notifications)
+                    {
+                        if (noti != null)
+                        {
+                            <li class="text-danger">@noti</li>
+                        }
+                    }
+                </ul>
+            </div>
+        }
+        <div class="mb-3">
+            <label for="name" style="width:180px;">Mã mặt hàng</label>
+            <input disabled class="mw-50" style="width:210px;" type="text" name="ID" value="@Model.Product.ID">
+        </div>
+        <div class="mb-3">
+            <label for="name" style="width:180px;">Tên</label>
+            <input disabled class="mw-50" style="width:210px;" type="text" name="Name" value="@Model.Product.Name">
+        </div>
+        <div class="mb-3">
+            <label for="Category" style="width:180px;">Loại Hàng</label>
+            <input disabled class="mw-50" style="width:210px;" type="text" name="Name" value="@Model.Category.Name">
+        </div>
+        <div class="mb-3">
+            <label for="Price" style="width:180px;">Giá</label>
+            <input disabled class="mw-50" style="width:210px;" type="text" name="Price" value="@Model.Product.Price">
+        </div>
+        <div class="mb-3">
+            <label for="ExpiryDate" style="width:180px;">Hạn sử dụng</label>
+            <input disabled class="mw-50" style="width:210px;" type="text" name="ExpiryDate" value="@Model.Product.ExpiryDate.ToShortDateString()">
+        </div>
+        <div class="mb-3">
+            <label for="ManufacturingDate" style="width:180px;">Ngày sản xuất</label>
+            <input disabled class="mw-50" style="width:210px;" type="text" name="ManufacturingDate" value="@Model.Product.ManufacturingDate.ToShortDateString()">
+        </div>
+        <div class="mb-3">
+            <label for="Manufacturer" style="width:180px;">Công ty sản xuất</label>
+            <input disabled class="mw-50" style="width:210px;" type="text" name="Manufacturer" value="@Model.Product.Manufacturer">
+        </div>
+        <button type="submit" class="btn btn-danger" style="width:150px;">Xóa mặt hàng</button>
+        <a asp-page="Index" class="btn btn-secondary">Trở về danh sách mặt hàng</a>
+    </div>
+</form>

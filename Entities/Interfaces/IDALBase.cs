@@ -1,12 +1,8 @@
-﻿namespace StoreSln_OOP.Entities
+﻿using StoreSln_OOP.DAL;
+
+namespace StoreSln_OOP.Entities
 {
-    public interface IDALBase
+    public interface IDALBase<T> where T : IContainsID
     {
-        IDALBase GetDALFunction();
-        bool ReadData(out List<IContainsID> resInstances);
-        bool SaveData(List<IContainsID> saveInstances);
-        bool Add(IContainsID addInstance);
-        bool Update(IContainsID updateInstance);
-        bool DeleteAtID(int id);
     }
 }

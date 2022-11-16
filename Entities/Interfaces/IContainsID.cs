@@ -2,6 +2,6 @@
 {
     public interface IContainsID
     {
-        int ID { get; set; }
+        public int ID { get; set; }
     }
 }

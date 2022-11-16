@@ -1,22 +1,28 @@
 ﻿using Newtonsoft.Json;
-using StoreSln_OOP;
 using StoreSln_OOP.Entities;
 using System.Runtime.CompilerServices;
 
 namespace StoreSln_OOP.DAL
 {
-    public abstract class DALBase
+    public class DALBase<T> where T : IContainsID
     {
-        protected string? dataFilePath;
-        protected DALBase()
+        string? dataFilePath;
+        private DALBase() { }
+        public DALBase(string saveFileName)
         {
+            dataFilePath = $@"{Global.DATA_DIR}/{saveFileName}";
         }
 
-        public static bool ReadData(string dataFilePath, out List<IContainsID> resInstances)
+        public bool ReadData(out List<T> resInstances)
         {
             bool isSuccess = false;
-            resInstances = new List<IContainsID>();
+            resInstances = new List<T>();
             string jsonData = String.Empty;
+ 
+            if (dataFilePath == string.Empty)
+            {
+                return false;
+            }
 
             try
             {
@@ -24,7 +30,7 @@ namespace StoreSln_OOP.DAL
                 {
                     jsonData = sr.ReadLine();
                 }
-                resInstances = JsonConvert.DeserializeObject<List<IContainsID>>(jsonData);
+                resInstances = JsonConvert.DeserializeObject<List<T>>(jsonData);
                 
                 if(resInstances != null)
                 {
@@ -44,7 +50,7 @@ namespace StoreSln_OOP.DAL
             return isSuccess;
         }
 
-        public static bool SaveData(string dataFilePath, List<IContainsID> saveInstances)
+        public bool SaveData(List<T> saveInstances)
         {
             bool isSuccess = false;
             string jsonData = JsonConvert.SerializeObject(saveInstances);
@@ -52,6 +58,11 @@ namespace StoreSln_OOP.DAL
             if (!Directory.Exists(Global.DATA_DIR))
             {
                 Directory.CreateDirectory(Global.DATA_DIR);
+            }
+
+            if (dataFilePath == string.Empty)
+            {
+                return false;
             }
 
             try
@@ -70,14 +81,11 @@ namespace StoreSln_OOP.DAL
             return isSuccess;
         }
 
-        public static bool Add(string dataFilePath, IContainsID addInstance)
+        public bool Add(T addInstance)
         {
-            List<IContainsID> instances;
-            
-            if(!ReadData(dataFilePath, out instances))
-            {
-                return false;
-            }
+            List<T> instances = new List<T>();
+
+            ReadData(out instances);
 
             int maxID = 0;
             if (instances.Any())
@@ -87,7 +95,7 @@ namespace StoreSln_OOP.DAL
             addInstance.ID = maxID + 1;
             instances.Add(addInstance);
             
-            if(!SaveData(dataFilePath, instances))
+            if(!SaveData(instances))
             {
                 return false;
             }
@@ -95,14 +103,11 @@ namespace StoreSln_OOP.DAL
             return true;
         }
 
-        public static bool Update(string dataFilePath, IContainsID updateInstance)
+        public bool Update(T updateInstance)
         {
-            List<IContainsID> instances;
+            List<T> instances;
 
-            if (!ReadData(dataFilePath, out instances))
-            {
-                return false;
-            }
+            ReadData(out instances);
 
             var index = instances.FindIndex(c => c.ID == updateInstance.ID);
             
@@ -113,7 +118,7 @@ namespace StoreSln_OOP.DAL
 
             instances[index] = updateInstance;
 
-            if (!SaveData(dataFilePath, instances))
+            if (!SaveData(instances))
             {
                 return false;
             }
@@ -121,14 +126,11 @@ namespace StoreSln_OOP.DAL
             return true;
         }
 
-        public static bool DeleteAtID(string dataFilePath, int id)
+        public bool RemoveAtID(int id)
         {
-            List<IContainsID> instances;
+            List<T> instances = new List<T>();
 
-            if (!ReadData(dataFilePath, out instances))
-            {
-                return false;
-            }
+            ReadData(out instances);
 
             var index = instances.FindIndex(c => c.ID == id);
 
@@ -139,7 +141,7 @@ namespace StoreSln_OOP.DAL
 
             instances.RemoveAt(index);
 
-            if (!SaveData(dataFilePath, instances))
+            if (!SaveData(instances))
             {
                 return false;
             }
