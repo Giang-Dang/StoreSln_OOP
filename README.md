@@ -25,15 +25,16 @@ DEADLINE: 6:00 PM, 19/11/2022
 - Design Pattern: Singleton
 
 ## CÁC TÍNH NĂNG
+### Mặt hàng
 -	Thêm các mặt hàng.
 -	Sửa các thuộc tính của mặt hàng trừ mã hàng.
 -	Xóa các mặt hàng: Kiểm tra mặt hàng nếu đã tồn tại trong hóa đơn thì không cho xóa và hiện thông báo.
 -	Tìm kiếm mặt hàng kết hợp tùy chọn nhiều thuộc tính (, tên hàng, hạn dùng, công ty sản xuất, năm sản xuất, loại hàng).
-===============================================================
+### Loại hàng
 -	Thêm loại hàng
 -	Xóa loại hàng: Kiểm tra trước khi xóa nếu có sản phẩm thuộc loại hàng thì không cho xóa và hiện thông báo.
 -	Tìm kiếm mặt hàng theo tên. 
-===============================================================
+### Hóa đơn nhập hàng
 -	Thêm hóa đơn nhập hàng:
 •	Tự gán thời gian tạo bằng thời gian hiện tại.
 •	Nút thêm từng mục (gồm tên mặt hàng và số lượng). Sau khi thêm, cập nhật lại danh sách mục ở hóa đơn.
@@ -44,7 +45,7 @@ DEADLINE: 6:00 PM, 19/11/2022
 •	Kiểm tra xem việc xóa hóa đơn có làm số lượng tồn kho của các mặt hàng bị âm không. Nếu có hiện thông báo và không cho xóa. Nếu không thì xóa hóa đơn.
 -	Tìm kiếm hóa đơn theo ngày tạo.
 -	Hiện thành tiền của từng mục và tổng thành tiền của hóa đơn.
-===============================================================
+### Hóa đơn bán hàng
 -	Thêm hóa đơn bán hàng:
 •	Tự gán thời gian tạo bằng thời gian hiện tại.
 •	Nút thêm từng mục (gồm tên mặt hàng và số lượng). Sau khi thêm, cập nhật lại danh sách mục ở hóa đơn.
@@ -55,13 +56,12 @@ DEADLINE: 6:00 PM, 19/11/2022
 -	Xóa hóa đơn nhập hàng.
 -	Tìm kiếm hóa đơn theo ngày tạo
 -	Hiện thành tiền của từng mục và tổng thành tiền của hóa đơn.
-===============================================================
+### Thống kê
 -	Thống kê số hàng còn lại trong kho theo thể loại.
-===============================================================
 -	Thống kê số hàng cũ đã hết hạn sử dụng:
 •	Mặc định là ngày hiện tại.
 •	Có thể chỉnh lại ngày.
-===============================================================
+
 
 ## OOP
 -	Áp dụng tính đóng gói, kế thừa, đa hình và trừu tượng vào các class ở folder Entities và DAL. Các class Entities có implement interface IContainsID.
