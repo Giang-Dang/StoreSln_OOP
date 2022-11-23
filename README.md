@@ -18,6 +18,12 @@ DEADLINE: 6:00 PM, 19/11/2022
 -	Không nộp chung mã nguồn với môn KTLT được.
 -	File doc tự đánh giá
 
+## CÔNG NGHỆ SỬ DỤNG:
+- Razor Pages trong ASP.NET Core 6
+- Mô hình 3 lớp
+- OOP
+- Design Pattern: Singleton
+
 ## CÁC TÍNH NĂNG
 -	Thêm các mặt hàng.
 -	Sửa các thuộc tính của mặt hàng trừ mã hàng.
