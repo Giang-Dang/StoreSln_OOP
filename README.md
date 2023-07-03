@@ -22,7 +22,7 @@ DEADLINE: 6:00 PM, 19/11/2022
 - Razor Pages trong ASP.NET Core 6
 - Mô hình 3 lớp
 - OOP
-- Design Pattern: Singleton
+- Design Pattern: Singleton, Abtract Factory
 
 ## CÁC TÍNH NĂNG
 ### Mặt hàng
@@ -62,8 +62,15 @@ DEADLINE: 6:00 PM, 19/11/2022
 •	Mặc định là ngày hiện tại.
 •	Có thể chỉnh lại ngày.
 
-
 ## OOP
 -	Áp dụng tính đóng gói, kế thừa, đa hình và trừu tượng vào các class ở folder Entities và DAL. Các class Entities có implement interface IContainsID.
 -	Trong folder DAL có Generic Class DALBase<T> where T : IContainsID. Class này chứa các hàm SaveData(), ReadData(), Add(), RemoveAtID(), Update().
 -	Singleton áp dụng vào các class ProductDA, CategoryDA, InvoiceDA, ReceiptDA để tạo 1 instance từ class DALBase<T> (T tương ứng với Product cho ProductDA, Category cho CategoryDA,…).
+
+## SCREENSHOTS:
+![Screenshot_OOP_01.jpg](/Screenshots/Screenshot_OOP_01.jpg)
+![Screenshot_OOP_02.jpg](/Screenshots/Screenshot_OOP_02.jpg)
+![Screenshot_OOP_03.jpg](/Screenshots/Screenshot_OOP_03.jpg)
+![Screenshot_OOP_04.jpg](/Screenshots/Screenshot_OOP_04.jpg)
+![Screenshot_OOP_05.jpg](/Screenshots/Screenshot_OOP_05.jpg)
+![Screenshot_OOP_06.jpg](/Screenshots/Screenshot_OOP_06.jpg)
