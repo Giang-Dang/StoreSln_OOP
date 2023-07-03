@@ -68,9 +68,9 @@ DEADLINE: 6:00 PM, 19/11/2022
 -	Singleton áp dụng vào các class ProductDA, CategoryDA, InvoiceDA, ReceiptDA để tạo 1 instance từ class DALBase<T> (T tương ứng với Product cho ProductDA, Category cho CategoryDA,…).
 
 ## SCREENSHOTS:
-![Screenshot_OOP_01.jpg](/Screenshots/Screenshot_OOP_01.jpg)
-![Screenshot_OOP_02.jpg](/Screenshots/Screenshot_OOP_02.jpg)
-![Screenshot_OOP_03.jpg](/Screenshots/Screenshot_OOP_03.jpg)
-![Screenshot_OOP_04.jpg](/Screenshots/Screenshot_OOP_04.jpg)
-![Screenshot_OOP_05.jpg](/Screenshots/Screenshot_OOP_05.jpg)
-![Screenshot_OOP_06.jpg](/Screenshots/Screenshot_OOP_06.jpg)
+![Screenshot_OOP_01.png](/Screenshots/Screenshot_OOP_01.png)
+![Screenshot_OOP_02.png](/Screenshots/Screenshot_OOP_02.png)
+![Screenshot_OOP_03.png](/Screenshots/Screenshot_OOP_03.png)
+![Screenshot_OOP_04.png](/Screenshots/Screenshot_OOP_04.png)
+![Screenshot_OOP_05.png](/Screenshots/Screenshot_OOP_05.png)
+![Screenshot_OOP_06.png](/Screenshots/Screenshot_OOP_06.png)
